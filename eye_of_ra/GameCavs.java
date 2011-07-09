@@ -44,7 +44,9 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     int i_MapHeight;
     int i_mouseX;             // mouse x position on the screen
     int i_mouseY;             // mouse y position on the sceen
-    long l_period = 10;   
+    long l_period = 10; 
+    
+    Player pl_player;
     BufferStrategy bs_Buffer;
     Graphics g;
     Thread t;
@@ -149,8 +151,11 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
             st_startScreen.Draw(g);
         }// if
             
-        if((hm_stats.get("Game")) == "active")
+        if((hm_stats.get("Game")) == "active"){
             be_map.Draw(g);
+            pl_player.Draw(g);
+        }// if
+            
         
         // show the mousepositions
         // System.out.println("mousepositions: " + i_mouseX + " " + i_mouseY);
@@ -239,7 +244,11 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
             if (e.getKeyCode() == KeyEvent.VK_DOWN && be_map.getYPos() > -1050) {
                 be_map.setVerticalMove(-15);
             }
-        }
+            
+            if (e.getKeyCode() == KeyEvent.VK_B) {
+                pl_player.openBuildMenu();
+            }// if
+        }// if
         
     }// keyPressed
       
@@ -296,8 +305,18 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
         i_MapWidth = be_map.sp_sprite.getWidth();
         i_MapHeight = be_map.sp_sprite.getHeight();
         
+        initsPlayer();
         setStateActive("Game");
     }// initWorld()
+    
+    // inits the player and ai
+    //
+    public void initsPlayer(){
+        pl_player = new Player();
+        pl_player.initBuildMenu("BM_Menu", s_datapath + "Menu/", s_typ, i_MapWidth, 
+                i_MapHeight, i_BMResolutionX, i_BMResolutionX,i_ButtonResolutionADDY);
+        
+    }// initsPlayer
     
     // set the values for all objects addicated by resolution
     //

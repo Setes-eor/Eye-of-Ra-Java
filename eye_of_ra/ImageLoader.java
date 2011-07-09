@@ -41,8 +41,6 @@ public class ImageLoader {
         }// if
         
         URL url = getClass().getClassLoader().getSystemResource(ref);        
-        //ref = url.getPath();
-        //ref.replaceAll("!", "");
         
         
         BufferedImage sourceImage = null;
