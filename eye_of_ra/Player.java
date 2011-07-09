@@ -15,23 +15,31 @@ public class Player extends PlayerBasic{
     // attributes of the class
     //
     BuildMenu bm_buildmenu;
+    ResourceBar rb_resources;
+    ResourceDisplay rd_store;
     
     // constructor
     //
-    public Player(){
-        super();
+    public Player(String playerID){
+        super(playerID);
     }// constructor
     
-    // init of the BuildMenu
-    public void initBuildMenu(String ref, String data, String typ, int x, int y, int resx, int resy, int addy){
-        bm_buildmenu = new BuildMenu(data + ref + typ, data, typ, x, y, resx, resy, addy);
-    }// initBuildMenu
+    // init of menus and displaies
+    //
+    public void initMenusAndDisplaies(String ref, String data, String typ, int x, int y, int resx, int resy, int addy){
+        bm_buildmenu = new BuildMenu(data + "Menu/" + ref + typ, data + "Menu/", typ, x, y, resx, resy, addy);
+        rd_store = new ResourceDisplay(data + "Anzeigen/" + "RA_Anzeige" + typ, data + "Anzeigen/", typ, x, y, resx, resy, addy);
+        rb_resources = new ResourceBar(data + "Anzeigen/" + "Ressourcenleiste" + typ, data + "Anzeigen/" + "Ressourcenleistes" + typ, 5, 5);
+    }// initMenusAndDisplaies
     
     // draw all the thinks of the player for ex. buildings, menus, ...
     //
     public void Draw(Graphics g){
         if(hm_playerstats.get("Build1") == "active")
             bm_buildmenu.Draw(g);
+        if(hm_playerstats.get("Store") == "active")
+            rd_store.Draw(g);
+        rb_resources.Draw(g);
     }// Draw
     
     // open the buildmenu
@@ -39,7 +47,16 @@ public class Player extends PlayerBasic{
     public void openBuildMenu(){
         if(hm_playerstats.get("Play") == "active")
             changeStat("Build1");
-        else
+        else if(hm_playerstats.get("Build1") == "active")
             changeStat("Play");
     }// openBuildMenu
+    
+    // open the storagedisplay
+    //
+    public void openStore(){
+        if(hm_playerstats.get("Play") == "active")
+            changeStat("Store");
+        else if(hm_playerstats.get("Store") == "active")
+            changeStat("Play");
+    }// openStore
 }// PlayerBasic

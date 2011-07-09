@@ -23,11 +23,11 @@ public class OptionMenu extends Menu{
     public final void initButtons(int x, int y, int addy){
         
         String data = s_datapath;
-        addButton(data + "SM_NeuesSpiel" + s_typ, x, y);
-        addButton(data + "OM_SpielSpeichern" + s_typ, x, y + addy);
-        addButton(data + "SM_SpielLaden" + s_typ, x, y + addy * 2);
-        //addButton(data,x, y + addy*3);
-        //addButton(data + "SM_Credits" + s_typ, x,/*715*/ y + addy * 4);
-        addButton(data + "SM_SpielBeenden" + s_typ, x,/*845*/ y + addy * 5);
+        addButton(data + "SM_NeuesSpiel" + s_typ, x, y, 1);
+        addButton(data + "OM_SpielSpeichern" + s_typ, x, y + addy, 2);
+        addButton(data + "SM_SpielLaden" + s_typ, x, y + addy * 2, 3);
+        //addButton(data,x, y + addy*3, 4);
+        addButton(data + "Menu_Element_Blank" + s_typ, x,/*715*/ y + addy * 4, 5);
+        addButton(data + "SM_SpielBeenden" + s_typ, x,/*845*/ y + addy * 5, 6);
     }// initButtons
 }// class StartMenu

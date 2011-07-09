@@ -40,6 +40,14 @@ public abstract class Menu extends Entity{
         lb_buttons.add(button);   
     }// setButton
     
+    // set the buttons of the menu
+    //
+    protected void addButton(String ref, int x, int y, int id){
+        Button button = new Button(ref,x,y, id);
+        
+        lb_buttons.add(button);   
+    }// setButton
+    
     // return the buttonID by clicked on the button
     //
     public int buttonClicked(int x, int y){

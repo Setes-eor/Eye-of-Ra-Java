@@ -92,11 +92,13 @@ public class Option{
         int bid = op_menu.buttonClicked(x, y);
         if(bid == 1)
             gc_game.loadWorld(0);
-        if(bid == 2)
+        else if(bid == 2)
             changeStat("Save");
-        if(bid == 3)
+        else if(bid == 3)
             changeStat("Load");
-        else if(bid == 4)
+        else if(bid == 5)
+            gc_game.setStateActive("Start");
+        else if(bid == 6)
             System.exit(0);
         
     }// buttonClicked

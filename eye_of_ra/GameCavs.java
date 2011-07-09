@@ -257,6 +257,10 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
                 pl_player.openBuildMenu();
             }// if
             
+            if (e.getKeyCode() == KeyEvent.VK_L) {
+                pl_player.openStore();
+            }// if
+            
             if (e.getKeyCode() == KeyEvent.VK_O) {
                 setStateActive("Option");
             }// if
@@ -330,8 +334,8 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     // inits the player and ai
     //
     public void initsPlayer(){
-        pl_player = new Player();
-        pl_player.initBuildMenu("BM_Menu", s_datapath + "Menu/", s_typ, i_MapWidth, 
+        pl_player = new Player("P1");
+        pl_player.initMenusAndDisplaies("BM_Menu", s_datapath, s_typ, i_MapWidth, 
                 i_MapHeight, i_BMResolutionX, i_BMResolutionX,i_ButtonResolutionADDY);
         
     }// initsPlayer

@@ -23,11 +23,11 @@ public class StartMenu extends Menu{
     public final void initButtons(int x, int y, int addy){
         
         String data = s_datapath;
-        addButton(data + "SM_NeuesSpiel" + s_typ, x, y);
-        // addButton("Data/Menu/SM_Tutorial.bmp",m_iButtonW,m_iButtonH,0,m_iButtonResolutionX,m_iButtonResolutionY + m_iButtonResolutionADDY,2);
-        addButton(data + "SM_SpielLaden" + s_typ, x, y + addy * 2);
-        //addButton(data,x, y + addy*3);
-        addButton(data + "SM_Credits" + s_typ, x,/*715*/ y + addy * 4);
-        addButton(data + "SM_SpielBeenden" + s_typ, x,/*845*/ y + addy * 5);
+        addButton(data + "SM_NeuesSpiel" + s_typ, x, y, 1);
+        // addButton(data + "Tutorial" + s_typ, x, y + addy,2);
+        addButton(data + "SM_SpielLaden" + s_typ, x, y + addy * 2, 3);
+        //addButton(data + "SM_Einstellungen" ,x, y + addy * 3, 4);
+        addButton(data + "SM_Credits" + s_typ, x,/*715*/ y + addy * 4, 5);
+        addButton(data + "SM_SpielBeenden" + s_typ, x,/*845*/ y + addy * 5, 6);
     }// initButtons
 }// class StartMenu

@@ -15,10 +15,14 @@ public abstract class PlayerBasic {
     // attributes of the class
     //
     HashMap<String,String> hm_playerstats;
-    
+    Resources re_resources;
+    String s_playerid;
     // constructor
     //
-    public PlayerBasic(){
+    public PlayerBasic(String playerID){
+        s_playerid = playerID;
+        re_resources = new Resources(playerID);
+        re_resources.InitResources(5, 5, 5, 5, 5, 5, 5, 5, 5, 5);
         hm_playerstats = new HashMap<String,String>();
         changeStat("Play");
     }// constructor
@@ -29,6 +33,7 @@ public abstract class PlayerBasic {
         hm_playerstats.put("Play", "inactive");
         hm_playerstats.put("Build1", "inactive");
         hm_playerstats.put("Build2", "inactive");
+        hm_playerstats.put("Store", "inactive");
         
     }// initStats
     

@@ -91,11 +91,11 @@ public class Start extends Entity{
         int bid = sm_start.buttonClicked(x, y);
         if(bid == 1)
             gc_game.loadWorld(0);
-        if(bid == 2)
-            changeStat("Load");
         if(bid == 3)
+            changeStat("Load");
+        if(bid == 5)
             changeStat("Credits");
-        else if(bid == 4)
+        else if(bid == 6)
             System.exit(0);
         
     }// buttonClicked
