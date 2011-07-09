@@ -22,7 +22,7 @@ public class LoadMenu extends Menu {
     @Override
     public final void initButtons(int x, int y, int addy) {
 
-        String data = s_datapath + "Menu/";
+        String data = s_datapath;
         addButton(data + "SpM_SpSt1" + s_typ, x, y + addy);
         addButton(data + "SpM_SpSt2" + s_typ, x, y + addy * 2);
         addButton(data + "SpM_SpSt3" + s_typ, x, y + addy * 3);

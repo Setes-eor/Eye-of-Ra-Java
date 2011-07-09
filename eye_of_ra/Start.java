@@ -15,6 +15,7 @@ public class Start extends Entity{
     
     // attrubtes of the class
     //
+    GameCavs gc_game;
     public StartMenu sm_start;
     public LoadMenu lm_load;
     String s_datapath;
@@ -25,14 +26,16 @@ public class Start extends Entity{
     int i_ButtonResolutionX;
     int i_ButtonResolutionY;
     int i_ButtonResolutionADDY;
+    int i_screenW;
     HashMap<String,String> hm_stats;
     
     // constructor
     //
-    public Start(String datapath, String typ, int mx, int my, int bx, 
-            int by, int ba){
-        super(datapath + "Anzeigen/Background" + typ ,0,0);
+    public Start(String datapath, String background, String typ, int mx, int my, int bx, 
+            int by, int ba, GameCavs game, int x){   
+        super(datapath + background + typ ,0,0);
         
+        i_screenW = x;
         s_datapath = datapath;
         s_typ = typ;
         i_MResolutionX = mx;
@@ -43,6 +46,7 @@ public class Start extends Entity{
         
         hm_stats = new HashMap<String,String>();
         
+        gc_game = game;
         initStats();
         initMenus();
         changeStat("StartMenu");
@@ -51,13 +55,19 @@ public class Start extends Entity{
     // init the startMenu
     //
     private void initMenus(){
-        sm_start = new StartMenu(s_datapath + "Menu/SM_Menu" + s_typ, s_datapath, s_typ,
+        
+        s_datapath += "Menu/";
+        if(i_screenW < 1920){
+            s_datapath += "Small/";
+        }// if
+        
+        sm_start = new StartMenu(s_datapath + "SM_Menu" + s_typ, s_datapath, s_typ,
                 i_MResolutionX, i_MResolutionY, i_ButtonResolutionX, i_ButtonResolutionY,
                 i_ButtonResolutionADDY);
-        lm_load = new LoadMenu(s_datapath + "Menu/SlM_Menu" + s_typ, s_datapath, s_typ,
+        lm_load = new LoadMenu(s_datapath + "SlM_Menu" + s_typ, s_datapath, s_typ,
                 i_MResolutionX, i_MResolutionY, i_ButtonResolutionX, i_ButtonResolutionY,
                 i_ButtonResolutionADDY);
-        be_credits = new BasicEntity(s_datapath + "Menu/Credits" + s_typ, i_MResolutionX, i_MResolutionY);
+        be_credits = new BasicEntity(s_datapath + "Credits" + s_typ, i_MResolutionX, i_MResolutionY);
     }//initStartMenu
     
     // init the Stats
@@ -79,7 +89,8 @@ public class Start extends Entity{
     //
     public void buttonClicked(int x, int y){
         int bid = sm_start.buttonClicked(x, y);
-        
+        if(bid == 1)
+            gc_game.loadWorld(0);
         if(bid == 2)
             changeStat("Load");
         if(bid == 3)

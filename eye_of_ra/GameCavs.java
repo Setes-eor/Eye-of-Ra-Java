@@ -76,8 +76,13 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
        });
         
         setResolution(i_widthScreen, i_heightScreen);
-        st_startScreen = new Start(s_datapath, s_typ, i_MResolutionX, i_MResolutionY, 
-                i_ButtonResolutionX, i_ButtonResolutionY, i_ButtonResolutionADDY);
+        
+        String Background = "/Anzeigen/BackgroundSmall";
+        if(x >= 1920)
+            Background = "/Anzeigen/Background";
+        
+        st_startScreen = new Start(s_datapath, Background, s_typ, i_MResolutionX, i_MResolutionY, 
+                i_ButtonResolutionX, i_ButtonResolutionY, i_ButtonResolutionADDY, this, x);
         setStateActive("Start");
         
         //initWorld();
@@ -280,11 +285,18 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     
     // inits the map and the gamefield
     //
-    public void initWorld(){
-        be_map = new BasicEntity(s_datapath + "Map/testmap1.bmp", 0, 0);
+    public void loadWorld(int game){
+        
+        String mappath = "Map/testmap1" + s_typ;
+        if(game == 0){
+            mappath = s_datapath + "Map/testmap1" + s_typ;
+        }// if
+        be_map = new BasicEntity(mappath, 0, 0);
         
         i_MapWidth = be_map.sp_sprite.getWidth();
         i_MapHeight = be_map.sp_sprite.getHeight();
+        
+        setStateActive("Game");
     }// initWorld()
     
     // set the values for all objects addicated by resolution

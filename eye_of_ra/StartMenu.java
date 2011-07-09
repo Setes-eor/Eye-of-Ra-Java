@@ -22,7 +22,7 @@ public class StartMenu extends Menu{
     @Override
     public final void initButtons(int x, int y, int addy){
         
-        String data = s_datapath + "Menu/";
+        String data = s_datapath;
         addButton(data + "SM_NeuesSpiel" + s_typ, x, y);
         // addButton("Data/Menu/SM_Tutorial.bmp",m_iButtonW,m_iButtonH,0,m_iButtonResolutionX,m_iButtonResolutionY + m_iButtonResolutionADDY,2);
         addButton(data + "SM_SpielLaden" + s_typ, x, y + addy * 2);
