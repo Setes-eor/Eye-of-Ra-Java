@@ -51,6 +51,7 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     Graphics g;
     Thread t;
     Start st_startScreen;
+    Option op_option;
     BasicEntity be_map;
     String s_datapath = "Data/";
     String s_typ = ".gif";
@@ -151,11 +152,14 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
             st_startScreen.Draw(g);
         }// if
             
-        if((hm_stats.get("Game")) == "active"){
+        if((hm_stats.get("Game")) == "active" || (hm_stats.get("Option")) == "active"){
             be_map.Draw(g);
             pl_player.Draw(g);
         }// if
             
+        if((hm_stats.get("Option")) == "active"){
+            op_option.Draw(g);
+        }// if
         
         // show the mousepositions
         // System.out.println("mousepositions: " + i_mouseX + " " + i_mouseY);
@@ -182,7 +186,9 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     //
     public void mouseClicked1(MouseEvent e){
         if(hm_stats.get("Start") == "active")
-            st_startScreen.buttonClicked(i_mouseX, i_mouseY);             
+            st_startScreen.buttonClicked(i_mouseX, i_mouseY);
+        if((hm_stats.get("Option")) == "active")
+            op_option.buttonClicked(i_mouseX, i_mouseY);
     }// mouseClicked1
     
     // scroll over the map by mousemovement
@@ -191,7 +197,7 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
         i_mouseX = e.getX();
         i_mouseY = e.getY();
             
-        if((hm_stats.get("Game")) == "active"){
+        if((hm_stats.get("Game")) == "active" ){
             if (i_mouseX < 10.0) {
                 be_map.setHorizontalMove(15);
             } else if (i_mouseX > 500.0) {
@@ -224,7 +230,9 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     public void keyPressed(KeyEvent e){
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
             if((hm_stats.get("Start")) == "active")
-                st_startScreen.esc();         
+                st_startScreen.esc();   
+            if((hm_stats.get("Option")) == "active")
+                op_option.esc();  
         }// if
             
         
@@ -247,6 +255,10 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
             
             if (e.getKeyCode() == KeyEvent.VK_B) {
                 pl_player.openBuildMenu();
+            }// if
+            
+            if (e.getKeyCode() == KeyEvent.VK_O) {
+                setStateActive("Option");
             }// if
         }// if
         
@@ -282,6 +294,7 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
         hm_stats.put("Game", "inactive");
         hm_stats.put("Credits", "inactive");
         hm_stats.put("Load", "inactive");
+        hm_stats.put("Option", "inactive");
     }// initStats
     
     // change the vale of the stats
@@ -306,6 +319,11 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
         i_MapHeight = be_map.sp_sprite.getHeight();
         
         initsPlayer();
+        
+        
+        op_option = new Option(s_datapath, s_typ, i_MResolutionX, i_MResolutionY, 
+                i_ButtonResolutionX, i_ButtonResolutionY, i_ButtonResolutionADDY, this, i_widthScreen);
+        
         setStateActive("Game");
     }// initWorld()
     
