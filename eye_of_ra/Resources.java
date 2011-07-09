@@ -305,6 +305,12 @@ public class Resources {
         m_iApartments_1 = Integer.parseInt(allrs[18]);  
     }// setResources
     
+    // getter
+    //
+    public int getMoney(){return m_iMoney;}
+    public int getWood(){return m_iWood;}
+    public int getBrick(){return m_iBrick;}
+    public int getInhabs(){return m_iInhabitans_1 + m_iInhabitans_2;}
     // attributes of the class
     //
     int m_iMoney;

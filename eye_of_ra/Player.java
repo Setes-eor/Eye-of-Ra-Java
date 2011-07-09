@@ -29,7 +29,8 @@ public class Player extends PlayerBasic{
     public void initMenusAndDisplaies(String ref, String data, String typ, int x, int y, int resx, int resy, int addy){
         bm_buildmenu = new BuildMenu(data + "Menu/" + ref + typ, data + "Menu/", typ, x, y, resx, resy, addy);
         rd_store = new ResourceDisplay(data + "Anzeigen/" + "RA_Anzeige" + typ, data + "Anzeigen/", typ, x, y, resx, resy, addy);
-        rb_resources = new ResourceBar(data + "Anzeigen/" + "Ressourcenleiste" + typ, data + "Anzeigen/" + "Ressourcenleistes" + typ, 5, 5);
+        rb_resources = new ResourceBar(data + "Anzeigen/" + "Ressourcenleiste" + typ, data + "Anzeigen/" + "Ressourcenleistes" + typ,
+                data, typ, 5, 5);
     }// initMenusAndDisplaies
     
     // draw all the thinks of the player for ex. buildings, menus, ...
@@ -39,7 +40,8 @@ public class Player extends PlayerBasic{
             bm_buildmenu.Draw(g);
         if(hm_playerstats.get("Store") == "active")
             rd_store.Draw(g);
-        rb_resources.Draw(g);
+        rb_resources.Draw(g, re_resources.getMoney(), re_resources.getWood(),
+                re_resources.getBrick(), re_resources.getInhabs());
     }// Draw
     
     // open the buildmenu
