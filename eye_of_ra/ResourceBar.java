@@ -109,15 +109,14 @@ public class ResourceBar extends Entity{
                     break;
             }// swich
 
-            lbe_Money.get(i).sp_sprite.setSubImage(0, 0, 20, 28);
-            lbe_Wood.get(i).sp_sprite.setSubImage(0, 0, 20, 28);
-            lbe_Brick.get(i).sp_sprite.setSubImage(0, 0, 20, 28);
-            lbe_Inhabs.get(i).sp_sprite.setSubImage(0, 0, 20, 28);
-            
-            lbe_Money.get(i).Draw(g);
-            lbe_Wood.get(i).Draw(g);
-            lbe_Brick.get(i).Draw(g);
-            lbe_Inhabs.get(i).Draw(g);
+            lbe_Money.get(i).sp_sprite.setSubImage(20 * m_fCoAnf, 0, 20, 28);
+            lbe_Money.get(i).sp_sprite.DrawSubImage(g, lbe_Money.get(i).getXPos(), lbe_Money.get(i).getYPos());
+            lbe_Wood.get(i).sp_sprite.setSubImage(20 * m_iCoWo , 0, 20, 28);
+            lbe_Wood.get(i).sp_sprite.DrawSubImage(g, lbe_Wood.get(i).getXPos(), lbe_Wood.get(i).getYPos());
+            lbe_Brick.get(i).sp_sprite.setSubImage(20 * m_iCoBr, 0, 20, 28);
+            lbe_Brick.get(i).sp_sprite.DrawSubImage(g, lbe_Brick.get(i).getXPos(), lbe_Brick.get(i).getYPos());
+            lbe_Inhabs.get(i).sp_sprite.setSubImage(20 * m_iCoIn, 0, 20, 28);
+            lbe_Inhabs.get(i).sp_sprite.DrawSubImage(g, lbe_Inhabs.get(i).getXPos(), lbe_Inhabs.get(i).getYPos());          
         }// for
     }// Draw
     

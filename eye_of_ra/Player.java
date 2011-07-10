@@ -39,7 +39,8 @@ public class Player extends PlayerBasic{
         if(hm_playerstats.get("Build1") == "active")
             bm_buildmenu.Draw(g);
         if(hm_playerstats.get("Store") == "active")
-            rd_store.Draw(g);
+            rd_store.DrawNumButtons(g, re_resources.getWood(), re_resources.getBrick(),
+                     re_resources.getFishes(),  re_resources.getMilk(),  re_resources.getSlime());
         rb_resources.Draw(g, re_resources.getMoney(), re_resources.getWood(),
                 re_resources.getBrick(), re_resources.getInhabs());
     }// Draw

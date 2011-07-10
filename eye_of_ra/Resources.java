@@ -311,6 +311,10 @@ public class Resources {
     public int getWood(){return m_iWood;}
     public int getBrick(){return m_iBrick;}
     public int getInhabs(){return m_iInhabitans_1 + m_iInhabitans_2;}
+    public int getFishes(){return m_iFishes;}
+    public int getMilk(){return m_iMilk;}
+    public int getSlime(){return m_iSlime;}
+    
     // attributes of the class
     //
     int m_iMoney;

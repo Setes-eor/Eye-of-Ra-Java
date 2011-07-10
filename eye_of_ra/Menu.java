@@ -17,7 +17,9 @@ public abstract class Menu extends Entity{
     // attributes of the class
     //
     protected int i_ButtonsID;
+    protected int i_ButtonpNumID;
     protected List<Button> lb_buttons;
+    protected List<ButtonpNum> bn_buttons;
     protected String s_typ;
     protected String s_datapath;
     
@@ -26,9 +28,11 @@ public abstract class Menu extends Entity{
     public Menu(String ref, String data, String typ, int x,int y){
         super(ref, x, y);
         i_ButtonsID = 0;
+        i_ButtonpNumID = 0;
         s_typ = typ;
         s_datapath = data;
-        lb_buttons = new ArrayList<Button>();   
+        lb_buttons = new ArrayList<Button>();  
+        bn_buttons = new ArrayList<ButtonpNum>();
     }// 
 
     // set the buttons of the menu
@@ -46,6 +50,25 @@ public abstract class Menu extends Entity{
         Button button = new Button(ref,x,y, id);
         
         lb_buttons.add(button);   
+    }// setButton
+    
+    // set the buttons with num of the menu
+    //
+    protected void addButtonpNum(String ref, int x, int y, String data, String path,
+            String typ, int resx, int resy){
+        i_ButtonpNumID++;
+        ButtonpNum button = new ButtonpNum(ref,x,y, i_ButtonpNumID, data, path, typ, resx, resy);
+        
+        bn_buttons.add(button);   
+    }// setButton
+    
+    // set the buttons with num of the menu
+    //
+    protected void addButtonpNum(String ref, int x, int y, int id,String data, String path,
+            String typ, int resx, int resy){
+        ButtonpNum button = new ButtonpNum(ref,x,y, id, data, path, typ, resx, resy);
+        
+        bn_buttons.add(button);   
     }// setButton
     
     // return the buttonID by clicked on the button
@@ -73,6 +96,14 @@ public abstract class Menu extends Entity{
         drawButtons(g);
     }// Draw
     
+    // draw the menu with the num buttons
+    //
+    public void DrawNumButtons(Graphics g, int wood, int brick, int fish, int milk,
+            int slime){
+        sp_sprite.Draw(g,(int) d_xPos,(int) d_yPos);   
+        drawButtonspNum(g, wood, brick, fish, milk, slime);
+    }// DrawNumButtons
+    
     // draw the buttons
     //
     private void drawButtons(Graphics g){
@@ -80,6 +111,20 @@ public abstract class Menu extends Entity{
             lb_buttons.get(i).Draw(g);
         }// for
     }// drawButtons
+    
+    // Die ganze Sache mti den buttonpnums kommt in eine extra klasse abgeleitet
+    // von Menu!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+    // draw buttons with num
+    //
+    private void drawButtonspNum(Graphics g, int wood, int brick, int fish,
+            int milk, int slime){
+        bn_buttons.get(0).Draw(g, wood);
+        bn_buttons.get(1).Draw(g, brick);
+        bn_buttons.get(2).Draw(g, fish);
+        bn_buttons.get(3).Draw(g, milk);
+        bn_buttons.get(4).Draw(g, slime);
+        
+    }// drawButtonspNum
     
     @Override
     public void collionWidth(Entity e) {

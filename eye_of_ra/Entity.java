@@ -41,8 +41,8 @@ public abstract class Entity {
     //
     public void setXPos(double x){d_xPos = x;}
     public void setYPos(double y){d_yPos = y;}
-    public double getXPos(){return (int) d_xPos;}
-    public double getYPos(){return (int) d_yPos;}
+    public int getXPos(){return (int) d_xPos;}
+    public int getYPos(){return (int) d_yPos;}
     
     public void move(long delta){
         d_xPos += (delta * d_Dx) / 1000;

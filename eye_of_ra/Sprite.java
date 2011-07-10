@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 public class Sprite {
     
     BufferedImage im_image;
+    BufferedImage im_subimage;
     
     // constructor
     //
@@ -31,12 +32,20 @@ public class Sprite {
     // show a subimage
     //
     public void setSubImage(int x, int y, int width, int height){
-        System.out.println(x + " " + width);
-        im_image = im_image.getSubimage(x, y, width, height);
-    }
+        //System.out.println(x + " " + width);
+        BufferedImage subimage;
+        im_subimage = im_image.getSubimage(x, y, width, height);
+    }// setSubImage
+    
     // draw the image of the spirte
     //
     public void Draw(Graphics g, int x, int y){
         g.drawImage(im_image, x, y, null);
     }// Draw
+    
+    // draw the subimage
+    //
+    public void DrawSubImage(Graphics g, int x, int y){
+        g.drawImage(im_subimage, x, y, null);
+    }// DrawSubImage
 }// class Sprite
