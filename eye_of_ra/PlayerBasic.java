@@ -57,12 +57,31 @@ public abstract class PlayerBasic {
     //
     public void horizontalMove(int x){
         for(int i = 0; i < lb_buildings.size(); i++){
-            lb_buildings.get(i);
+            lb_buildings.get(i).setHorizontalMove(x);
+        }// for
+        for(int i = 0; i < lu_units.size(); i++){
+            lb_buildings.get(i).setHorizontalMove(x);
         }// for
     }// horizontalMove
     public void verticalMove(int y){
-        
+        for(int i = 0; i < lb_buildings.size(); i++){
+            lb_buildings.get(i).setVerticalMove(y);
+        }// for
+        for(int i = 0; i < lu_units.size(); i++){
+            lb_buildings.get(i).setVerticalMove(y);
+        }// for
     }// verticalMove
+    
+    // move all
+    //
+    public void move(int x){
+         for(int i = 0; i < lb_buildings.size(); i++){
+            lb_buildings.get(i).move(x);
+        }// for
+        for(int i = 0; i < lu_units.size(); i++){
+            lb_buildings.get(i).move(x);
+        }// for
+    }// move
     
     // init the Stats
     //

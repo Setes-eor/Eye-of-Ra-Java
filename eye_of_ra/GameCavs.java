@@ -137,6 +137,7 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     public void Update(){
         if((hm_stats.get("Game")) == "active"){
             be_map.move(500);
+            pl_player.move(500);
         }// move
     }// Update
     
@@ -199,29 +200,26 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
             
         if((hm_stats.get("Game")) == "active" ){
             if (i_mouseX < 10.0) {
-                be_map.setHorizontalMove(15);
+                moveHorizontal(15);
             } else if (i_mouseX > 500.0) {
-                be_map.setHorizontalMove(0);
+                resetHorizontal();
             }
-
             if (i_mouseX > 1900.0 - i_MoveResolutionX && be_map.getXPos() > -1050) {
-                be_map.setHorizontalMove(-15);
+                moveHorizontal(-15);
             } else if (i_mouseX < 1900.0 - i_MoveResolutionX) {
-                be_map.setHorizontalMove(0);
+                resetHorizontal();
             }
-
             if (i_mouseY < 10.0 && be_map.getYPos() < 0) {
-                be_map.setVerticalMove(15);
+                moveVertical(15);
             } else if (i_mouseY > 10.0) {
-                be_map.setVerticalMove(0);
+                resetVertical();
             }
-
             if (i_mouseY > 1000.0 - i_MoveResolutionY && be_map.getYPos() > -1050) {
-                be_map.setVerticalMove(-15);
+                moveVertical(-15);
             } else if (i_mouseY < 1000.0 - i_MoveResolutionY) {
-                be_map.setVerticalMove(0);
+                resetVertical();
             }
-        }
+        }// if
         
     }// mouseMoved
       
@@ -238,29 +236,23 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
         
         if((hm_stats.get("Game")) == "active"){
             if (e.getKeyCode() == KeyEvent.VK_LEFT && be_map.getXPos() < 0) {
-                be_map.setHorizontalMove(15);
+                moveHorizontal(15);
             }
-
             if (e.getKeyCode() == KeyEvent.VK_RIGHT && be_map.getXPos() > -1050) {
-                be_map.setHorizontalMove(-15);
+                moveHorizontal(-15);
             }
-
             if (e.getKeyCode() == KeyEvent.VK_UP && be_map.getYPos() < 0) {
-                be_map.setVerticalMove(15);
+                moveVertical(15);
             }
-
             if (e.getKeyCode() == KeyEvent.VK_DOWN && be_map.getYPos() > -1050) {
-                be_map.setVerticalMove(-15);
+                moveVertical(-15);
             }
-            
             if (e.getKeyCode() == KeyEvent.VK_B) {
                 pl_player.openBuildMenu();
             }// if
-            
             if (e.getKeyCode() == KeyEvent.VK_L) {
                 pl_player.openStore();
             }// if
-            
             if (e.getKeyCode() == KeyEvent.VK_O) {
                 setStateActive("Option");
             }// if
@@ -268,20 +260,40 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
         
     }// keyPressed
       
+    public void moveHorizontal(int value){
+        be_map.setHorizontalMove(value);
+        pl_player.horizontalMove(value);
+    }// moveUp
+    
+    public void moveVertical(int value){
+        be_map.setVerticalMove(value);
+        pl_player.verticalMove(value);
+    }// moveDown
+    
+    public void resetHorizontal(){
+        be_map.setHorizontalMove(0);
+        pl_player.horizontalMove(0);
+    }// resetHorizontal
+    
+    public void resetVertical(){
+        be_map.setVerticalMove(0);
+        pl_player.verticalMove(0);
+    }// resetVertical
+    
     // do all the thinks, when a key is released
     //
     public void keyReleased(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            be_map.setHorizontalMove(0);
+            resetHorizontal();
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            be_map.setHorizontalMove(0);
+            resetHorizontal();
         }
         if(e.getKeyCode() == KeyEvent.VK_UP){
-            be_map.setVerticalMove(0);
+            resetVertical();
         }// if
         if(e.getKeyCode() == KeyEvent.VK_DOWN){
-            be_map.setVerticalMove(0);
+            resetVertical();
         }// if     
     }
 
