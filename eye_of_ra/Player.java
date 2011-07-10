@@ -17,6 +17,7 @@ public class Player extends PlayerBasic{
     BuildMenu bm_buildmenu;
     ResourceBar rb_resources;
     ResourceDisplay rd_store;
+    BasicEntity be_dragBuild;
     
     // constructor
     //

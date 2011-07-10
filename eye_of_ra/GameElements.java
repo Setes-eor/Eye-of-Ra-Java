@@ -14,12 +14,18 @@ public class GameElements extends Entity{
     //
     private int i_energy;      // live-energy of units and buildings
     private boolean b_isAlive; // is the object actualy alive
+    private int i_persID;
     
-    public GameElements(String ref,int x,int y, int energy){
+    public GameElements(String ref,int x,int y, int energy, int persID){
         super(ref,x,y);
         b_isAlive = true;
+        i_persID = persID;
     }
 
+    // set the alive of a element
+    //
+    public void setAlive(boolean alive){b_isAlive = alive;}// setAlive
+    
     @Override
     public void collionWidth(Entity e) {
         throw new UnsupportedOperationException("Not supported yet.");

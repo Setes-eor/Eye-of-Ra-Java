@@ -135,9 +135,9 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     // update all the thinks of the game: for examp. positions, ressources, ....
     //
     public void Update(){
-        if((hm_stats.get("Game")) == "active")
+        if((hm_stats.get("Game")) == "active"){
             be_map.move(500);
- 
+        }// move
     }// Update
     
     // render the entities
