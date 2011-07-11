@@ -39,11 +39,11 @@ public abstract class PlayerBasic {
     
     // set a build
     //
-    public void setBuild(String data, String path, String typ, int x, int y, int energy){
+    public void addBuild(String data, String path, String typ, int x, int y, int energy){
         i_persIDBuildings++;
         Buildings build = new Buildings(data + path + typ, x, y, energy, i_persIDBuildings);
         lb_buildings.add(build);
-    }// setBuild
+    }// addBuild
     
     // set a unit
     //
@@ -90,6 +90,7 @@ public abstract class PlayerBasic {
         hm_playerstats.put("Build1", "inactive");
         hm_playerstats.put("Build2", "inactive");
         hm_playerstats.put("Store", "inactive");
+        hm_playerstats.put("OnBuild", "inactive");
         
     }// initStats
     

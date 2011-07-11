@@ -37,6 +37,12 @@ public abstract class Entity {
         d_yPos = y;
     }// constructor
        
+    // change the image of a Entity
+    //
+    public void changeSprite(String ref){
+        this.sp_sprite = ImageLoader.get().getSprite(ref);
+    }// changeSprite
+    
     // setter and getter
     //
     public void setXPos(double x){d_xPos = x;}

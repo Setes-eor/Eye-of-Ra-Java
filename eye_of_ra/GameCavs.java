@@ -138,6 +138,7 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
         if((hm_stats.get("Game")) == "active"){
             be_map.move(500);
             pl_player.move(500);
+            pl_player.movebuildCurser(i_mouseX, i_mouseY);
         }// move
     }// Update
     
@@ -186,10 +187,17 @@ public class GameCavs extends Canvas implements Runnable, KeyListener, MouseMoti
     // do something when the mousekey is pressed
     //
     public void mouseClicked1(MouseEvent e){
+        System.out.println("mouse" + " " + e.getButton());
         if(hm_stats.get("Start") == "active")
             st_startScreen.buttonClicked(i_mouseX, i_mouseY);
         if((hm_stats.get("Option")) == "active")
             op_option.buttonClicked(i_mouseX, i_mouseY);
+        if((hm_stats.get("Game")) == "active"){
+            if(e.getButton() == MouseEvent.BUTTON1)
+                pl_player.mouseClicked("left", i_mouseX, i_mouseY);
+            if(e.getButton() == MouseEvent.BUTTON3)
+              pl_player.mouseClicked("right", i_mouseX, i_mouseY);  
+        }// if
     }// mouseClicked1
     
     // scroll over the map by mousemovement
