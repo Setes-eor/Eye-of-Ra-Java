@@ -19,11 +19,7 @@ public class Player extends PlayerBasic{
     ResourceBar rb_resources;
     ResourceDisplay rd_store;
     BasicEntity be_dragBuild;
-    String s_databuild;
-    String s_typ;
-    String[] s_buildImages1 = {"haupthaus_raster", "wohnhaus", "gerade_rechts", "markt", 
-    "temple", "warenhaus", "", "lumber", "palmen_raster", "farmhaus", "ziegenfarmfeld",
-    "fischerhaus"};
+    String s_buildchoose;
     
     // constructor
     //
@@ -45,11 +41,7 @@ public class Player extends PlayerBasic{
     // init the  buildcurser
     //
     public void initBuildCurser(String ref, int x, int y){
-        String typ = ".bmp";
-        if(ref == "buildcurserplank")
-            typ = s_typ;
-        
-        be_buildCurser = new BasicEntity(s_databuild + ref + typ, x, y);
+        be_buildCurser = new BasicEntity(s_databuild + ref + s_typ, x, y);
     }// initPlankBuildCurser
     
     // move teh buildcurser with the mouse
@@ -65,6 +57,8 @@ public class Player extends PlayerBasic{
     // draw all the thinks of the player for ex. buildings, menus, ...
     //
     public void Draw(Graphics g){
+        
+        drawBuildUnits(g);
         if(hm_playerstats.get("Build1") == "active"
                 || hm_playerstats.get("OnBuild") == "active"){
             bm_buildmenu.Draw(g);
@@ -99,8 +93,13 @@ public class Player extends PlayerBasic{
                     || hm_playerstats.get("OnBuild") == "active"){
                 this.changeStat("OnBuild");
                 int buttonid = bm_buildmenu.buttonClicked(x, y);
-                if(buttonid > 0)
+                if(buttonid > 0){
                     initBuildCurser(s_buildImages1[buttonid], x, y);
+                    s_buildchoose = hm_buildings.get(s_sortofBuildings[buttonid]);
+                }// if
+                    
+                if(buttonid == 0)
+                    addBuild(s_databuild, s_buildchoose, s_typ, x, y, 5);
             }// 
         }// if
         if(mouse == "right"){
